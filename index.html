@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <title>Todo | Vue</title>
+  </head>
+  <body>
+    
+    <div id="app">
+      <div class="container">
+        <div class="row justify-content-center mt-3">
+          <div class="col-md-8">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" v-model.trim="text" @keyup.enter="add" placeholder="Write a task">
+              <div class="input-group-append">
+                <button class="btn btn-success" @click="add" type="button">Button</button>
+              </div>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" v-for="item in todoList" :key="item.id">
+                <input type="checkbox" @change="done(item.id)">
+                {{  item.text }}
+                <a href="#" class="float-right" @click.prevent="destroy(item.id)"><i class="fa fa-trash-alt text-danger"></i></a>
+              </li>
+              <li class="list-group-item" v-for="item in doneList" :key="item.id">
+                <input type="checkbox" @change="undo(item.id)" checked>
+                <s class="text-secondary">{{ item.text }}</s>
+                <a href="#" class="float-right" @click.prevent="destroy(item.id)" ><i class="fa fa-trash-alt text-danger"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
